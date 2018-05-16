@@ -1,4 +1,4 @@
-import { ApolloLink,  split } from 'apollo-link';
+import { ApolloLink, {#isAuth}concat,{/isAuth} split } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 {#isWs}

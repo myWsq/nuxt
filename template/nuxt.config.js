@@ -31,7 +31,7 @@ module.exports = {
   modules: [ '@nuxtjs/apollo' ],
 	apollo: {
 		clientConfigs: {
-			default: '~/graphql/apollo-client.js'
+			default: '~/plugins/apollo.js'
 		}
 	},
   /*
