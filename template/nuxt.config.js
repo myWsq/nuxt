@@ -51,7 +51,8 @@ module.exports = {
     },
     {{/alacarte}}
     vendor: [
-      '~/plugins/vuetify.js'
+      'vuetify',
+			'graphql-tag'
     ],
     extractCSS: true,
     extend (config, ctx) {
