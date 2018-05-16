@@ -1,9 +1,10 @@
 import { ApolloLink, concat, split } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+{#isWs}
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
-
+{/isWs}
 
 export default (ctx) => {
 	let link = new HttpLink({
@@ -26,7 +27,7 @@ export default (ctx) => {
 				return kind === 'OperationDefinition' && operation === 'subscription';
 			},
 			wsLink,
-			httpLink
+			link
 		);
 	}
 	{{/isWs}}
