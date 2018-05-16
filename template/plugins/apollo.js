@@ -44,7 +44,7 @@ export default (ctx) => {
 	});
   {{/isAuth}}
 	return {
-		link: {{#if isAuth}}concat(authMiddleware,link){{#else if}}link{{/if}}
+		link: {{#if isAuth}}concat(authMiddleware,link){{#else}}link{{/if}}
 		cache: new InMemoryCache()
 	};
 };
