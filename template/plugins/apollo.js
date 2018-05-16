@@ -1,10 +1,10 @@
-import { ApolloLink, {#isAuth}concat,{/isAuth} split } from 'apollo-link';
+import { ApolloLink, {{#isAuth}}concat,{{/isAuth}} split } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-{#isWs}
+{{#isWs}}
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
-{/isWs}
+{{/isWs}}
 
 export default (ctx) => {
 	let link = new HttpLink({
@@ -32,7 +32,7 @@ export default (ctx) => {
 	}
 	{{/isWs}}
 
-	{#isAuth}
+  {{#isAuth}}
 	const authMiddleware = new ApolloLink((operation, forward) => {
 		// add the authorization to the headers
 		operation.setContext({
@@ -42,9 +42,9 @@ export default (ctx) => {
 		});
 		return forward(operation);
 	});
-	{/isAuth}
+  {{/isAuth}}
 	return {
-		link: {#if isAuth}concat(authMiddleware,link){#else}link{/if}
+		link: {{#if isAuth}}concat(authMiddleware,link){{#else}}link{{/if}}
 		cache: new InMemoryCache()
 	};
 };
