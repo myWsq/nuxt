@@ -1,4 +1,4 @@
-import { ApolloLink, concat, split } from 'apollo-link';
+import { ApolloLink, {#isAuth}concat,{/isAuth} split } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 {#isWs}
@@ -32,19 +32,19 @@ export default (ctx) => {
 	}
 	{{/isWs}}
 
-	// const authMiddleware = new ApolloLink((operation, forward) => {
-	// 	// add the authorization to the headers
-	// 	const token = '';
-	// 	operation.setContext({
-	// 		headers: {
-	// 			authorization: `Bearer ${token}`
-	// 		}
-	// 	});
-	// 	return forward(operation);
-	// });
-
+	{#isAuth}
+	const authMiddleware = new ApolloLink((operation, forward) => {
+		// add the authorization to the headers
+		operation.setContext({
+			headers: {
+				authorization: `Bearer {{token}}`
+			}
+		});
+		return forward(operation);
+	});
+	{/isAuth}
 	return {
-		link: link, // or concat(authMiddleware,link)
+		link: {#if isAuth}concat(authMiddleware,link){#else}link{/if}
 		cache: new InMemoryCache()
 	};
 };
