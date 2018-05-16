@@ -27,6 +27,12 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+  modules: [ '@nuxtjs/apollo' ],
+	apollo: {
+		clientConfigs: {
+			default: '~/graphql/apollo-client.js'
+		}
+	},
   /*
   ** Build configuration
   */
@@ -47,18 +53,7 @@ module.exports = {
       '~/plugins/vuetify.js'
     ],
     extractCSS: true,
-    /*
-    ** Run ESLint on save
-    */
     extend (config, ctx) {
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
       {{#alacarte}}
       if (ctx.isServer) {
         config.externals = [
