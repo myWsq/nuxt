@@ -6,7 +6,7 @@ import { getMainDefinition } from 'apollo-utilities';
 
 
 export default (ctx) => {
-	const link = new HttpLink({
+	let link = new HttpLink({
 		uri: '{{httpUrl}}'
 	});
 

@@ -17,6 +17,7 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
+      // 在国内，建议使用 https://fonts.cat.net/  替换
     ]
   },
   plugins: ['~/plugins/vuetify.js'],
