@@ -7,14 +7,14 @@ import { getMainDefinition } from 'apollo-utilities';
 
 export default (ctx) => {
 	const link = new HttpLink({
-		uri: {{httpUrl}}
+		uri: '{{httpUrl}}'
 	});
 
 	// Create a WebSocket link:
 	{{#isWs}}
 	if (process.client) {
 		let wsLink = new WebSocketLink({
-			uri: {{wsUrl}},
+			uri: '{{wsUrl}}',
 			options: {
 				reconnect: true
 			}
@@ -30,7 +30,7 @@ export default (ctx) => {
 		);
 	}
 	{{/isWs}}
-	
+
 	// const authMiddleware = new ApolloLink((operation, forward) => {
 	// 	// add the authorization to the headers
 	// 	const token = '';
